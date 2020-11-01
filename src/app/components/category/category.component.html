@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="header-section">
+      <img src="../../../assets/icons/Back.svg" height="30px" id="back-btn" (click)="backToHome()">
+      <h2>{{title}}</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="search-section">
+      <div [ngClass]="{'search-bar': true, 'active-input': activeInput}">
+        <img src="../../../assets/icons/Search.svg" height="20px">
+        <input #searchBar type="text" placeholder="Search" (change)="searchByKeyword()" [(ngModel)]='searchValue'
+          [value]='searchValue' (focus)="onInputFocus()" (blur)="onInputBlur()">
+        <p [hidden]="hideKeyword" class="clearKeyword" (click)="clearSearch()">X</p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div *ngIf="!loading; else showLoader" style="margin: 0; padding: 0;">
+      <div *ngIf="books.length > 0; else showNoData" style="margin: 0; padding: 0;">
+        <div class="result-section row">
+          <div class="col-lg-3 col-md-4 col-sm-6 book-col" *ngFor="let book of books">
+            <div class="card">
+              <img src="{{book.formats['image/jpeg']}}" class="card-img-top" title="{{ book.title }}">
+              <div class="card-body">
+                <h5 class="card-title">{{book.title | title}}</h5>
+                <p class="card-text">{{book.authors.length > 0 ? book.authors[0].name : ''}}</p>
+                <a class="btn btn-primary" role="button" (click)="loadBook(book)">Read</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ng-template #showNoData>
+        <p style="font-weight: bold;">No books found for search query.</p>
+      </ng-template>
+    </div>
+    <ng-template #showLoader>
+      <app-spinner></app-spinner>
+    </ng-template>
+  </div>
+</div>

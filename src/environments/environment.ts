@@ -3,7 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  endpoint: {
+    base: 'http://skunkworks.ignitesol.com:8000/books/?mime_type=image&page=',
+    searchByKeyword:
+      'http://skunkworks.ignitesol.com:8000/books/?mime_type=image&search='
+  },
 };
 
 /*

@@ -1,0 +1,15 @@
+<div class='container'>
+  <div class="header-section">
+    <h1>{{projectTitle}}</h1>
+    <h2>{{projectDescr}}</h2>
+  </div>
+  <div class='category-container row'>
+    <div *ngFor="let category of categories" class='card category col-sm-12 col-md-12 col-lg-5'>
+      <div class="category-card" (click)="loadCategory(category)">
+        <img src="../../../assets/icons/{{category}}.svg">
+        <p>{{category}}</p>
+        <img class='next-btn' src="../../../assets/icons/Next.svg">
+      </div>
+    </div>
+  </div>
+</div>
